@@ -72,8 +72,7 @@ The behavior of this endpoint was as follows:
 1. **If there was an application, the response would be:**
 
     ```json
-    {"messages": ["Phone number not found"]
-    }
+    {"messages": ["Phone number not found"]}
     ```
 
 2. **If there was no application, the response would be:**
