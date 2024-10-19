@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check SASSA Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Check SASSA Application Status</h2>
+        <p id="subtitle">Enter Your 13 Digit South African ID Number to find out if you have a SASSA SRD Application</p>
+        <input type="text" id="idNumber" placeholder="Enter your ID number">
+        <div id="validation-message"></div>
+        <button onclick="checkStatus()">Check</button>
+        <div id="result"></div>
+        <div id="loader">Loading...</div>
+        <div id="extra-button">
+            <button id="didnt-submit-btn" onclick="showExtraInfo()">I Didn't Submit an Application?</button>
+        </div>
+        <div id="extra-info"></div>
+    </div>
+    
+    <footer>
+        Tool created by Joel Cedras and Veer Gosai<br>
+        <strong>POPI Act: We do not collect your ID Number</strong>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
