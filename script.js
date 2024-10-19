@@ -91,12 +91,7 @@ function showExtraInfo() {
     extraInfo.innerHTML = `
         <strong>Scammers and Fraudsters</strong> have been targeting youth by claiming their <strong>SASSA R370 Grants</strong> without their knowledge.<br>
         All they need is your <strong>ID Number, Name, Surname,</strong> and a <strong>SIM Card</strong>.<br><br>
-        They may have been able to set up a bank account on your ID Number with one of the following without your knowledge:<br>
-        <ul>
-            <li><strong>High Risk:</strong>Shoprite Money Market, Thyme Bank, Bank Zero</li>
-            <li><strong>Medium Risk:</strong> Capitec, ABSA, FNB</li>
-            <li><strong>Low Risk:</strong> Nedbank, Standard Bank</li>
-        </ul>
+        They may have been able to set up a bank account on your ID Number without your knowledge<br>
     `;
 }
 
