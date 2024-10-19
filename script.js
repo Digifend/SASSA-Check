@@ -1,5 +1,3 @@
-const { stringify } = require("postman-request/lib/url-parse");
-
 function checkStatus() {
     const idNumber = document.getElementById('idNumber').value;
     const resultDiv = document.getElementById('result');
