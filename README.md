@@ -4,7 +4,7 @@ https://digifend.github.io/SASSA-Check/
 
 ![Check SASSA Infographic](https://raw.githubusercontent.com/Digifend/SASSA-Check/main/images/CheckSASSAInfographic.png)
 
-*Caption: An infographic explaining the process to check SASSA status.*
+*An infographic showing how or Check SASSA Website works*
 
 
 This project uses a POST request to the Public SASSA API endpoint to verify the application status based on the provided ID number and mobile phone number.
