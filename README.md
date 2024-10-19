@@ -59,3 +59,33 @@ The application handles responses from the API as follows:
 
    This means there is **no application** associated with the provided ID number.
 
+## Previous API Implementation
+
+We used to use the following `GET` request endpoint to check the application status
+
+```
+GET https://srd.sassa.gov.za/srdweb/api/web/outcome/{{ID_Number}}/0600000000
+```
+
+The behavior of this endpoint was as follows:
+
+1. **If there was an application, the response would be:**
+
+    ```json
+    {"messages": ["Phone number not found"]
+    }
+    ```
+
+2. **If there was no application, the response would be:**
+
+    ```json
+    {"messages": ["party not found for ID number"]}
+    ```
+
+This approach has since been replaced by the current `POST` request implementation, as now the response for both is
+
+3. **New Response for both**
+
+    ```json
+    {"messages":["Invalid"]}
+    ```
