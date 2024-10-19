@@ -1,3 +1,5 @@
+const { stringify } = require("postman-request/lib/url-parse");
+
 function checkStatus() {
     const idNumber = document.getElementById('idNumber').value;
     const resultDiv = document.getElementById('result');
@@ -13,11 +15,13 @@ function checkStatus() {
     extraInfo.style.display = 'none';
     extraButton.style.display = 'none';
 
+    // Validate ID length
     if (idNumber.length !== 13) {
         validationMessage.textContent = 'ID number is too ' + (idNumber.length < 13 ? 'short' : 'long');
         return;
     }
 
+    // Validate ID number using Luhn algorithm
     if (!isValidLuhn(idNumber)) {
         validationMessage.textContent = 'Invalid ID number';
         return;
@@ -25,20 +29,32 @@ function checkStatus() {
 
     loader.style.display = 'block';
 
-    fetch(`https://srd.sassa.gov.za/srdweb/api/web/outcome/${idNumber}/0600000000`)
+    // Prepare the POST request
+    fetch('https://srd.sassa.gov.za/srdweb/api/web/verified_otp', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            idnumber: idNumber,
+            mobile: '0600000000' // hard-coded mobile number
+        })
+    })
         .then(response => response.json())
         .then(data => {
             loader.style.display = 'none';
             resultDiv.style.display = 'flex';
-            if (data.messages && data.messages.includes("party not found for ID number")) {
-                resultDiv.textContent = 'No SASSA Application';
-                resultDiv.style.backgroundColor = '#ff0000';
-                resultDiv.style.textTransform = 'capitalize';
-            } else if (data.messages && data.messages.includes("Phone number not found")) {
+
+            // Check response messages
+            if (data.messages && data.messages.includes("Invalid phone number for party")) {
                 resultDiv.textContent = 'SASSA Application Found';
                 resultDiv.style.backgroundColor = '#008000';
                 resultDiv.style.textTransform = 'capitalize';
                 extraButton.style.display = 'block';
+            } else if (data.messages && data.messages.includes("Invalid")) {
+                resultDiv.textContent = 'No SASSA Application';
+                resultDiv.style.backgroundColor = '#ff0000';
+                resultDiv.style.textTransform = 'capitalize';
             } else {
                 resultDiv.textContent = 'Unexpected response from the API';
                 resultDiv.style.backgroundColor = '#ffcc00';
@@ -52,6 +68,7 @@ function checkStatus() {
             console.error('Error:', error);
         });
 }
+
 
 function generateSalt(length) {
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
