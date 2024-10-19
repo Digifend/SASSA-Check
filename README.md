@@ -81,7 +81,7 @@ The behavior of this endpoint was as follows:
     {"messages": ["party not found for ID number"]}
     ```
 
-This approach has since been replaced by the current `POST` request implementation, as now the response for both is
+This approach has since been replaced by the current `POST` request implementation, as SASSA has changed the API on 14 October 2024
 
 3. **New Response for both**
 
