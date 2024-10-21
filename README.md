@@ -1,5 +1,7 @@
 # SASSA Application Check
 
+## Please note that this project is not currently working, as it had been patched by SASSA
+
 https://digifend.github.io/SASSA-Check/
 
 ![Check SASSA Infographic](https://raw.githubusercontent.com/Digifend/SASSA-Check/main/images/CheckSASSAInfographic.png)
