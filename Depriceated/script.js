@@ -1,5 +1,3 @@
-const { stringify } = require("postman-request/lib/url-parse");
-
 function checkStatus() {
     const idNumber = document.getElementById('idNumber').value;
     const resultDiv = document.getElementById('result');
@@ -29,15 +27,15 @@ function checkStatus() {
 
     loader.style.display = 'block';
 
-    // Prepare the PATCH request with updated payload
-    fetch('https://srd.sassa.gov.za/srdweb/api/web/contact/issue', {
-        method: 'PATCH',
+    // Prepare the POST request
+    fetch('https://srd.sassa.gov.za/srdweb/api/web/verified_otp', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            idnumber: idNumber, // using the input ID number
-            guid: 'auth' // hard-coded guid value
+            idnumber: idNumber,
+            mobile: '0600000000' // hard-coded mobile number
         })
     })
         .then(response => response.json())
@@ -46,15 +44,15 @@ function checkStatus() {
             resultDiv.style.display = 'flex';
 
             // Check response messages
-            if (data.messages && data.messages.includes("invalid idnumber")) {
-                resultDiv.textContent = 'No SASSA Application Found';
-                resultDiv.style.backgroundColor = '#ff0000';
-                resultDiv.style.textTransform = 'capitalize';
-            } else if (data.messages && data.messages.includes("invalid guid")) {
+            if (data.messages && data.messages.includes("Invalid phone number for party")) {
                 resultDiv.textContent = 'SASSA Application Found';
                 resultDiv.style.backgroundColor = '#008000';
                 resultDiv.style.textTransform = 'capitalize';
                 extraButton.style.display = 'block';
+            } else if (data.messages && data.messages.includes("Invalid")) {
+                resultDiv.textContent = 'No SASSA Application';
+                resultDiv.style.backgroundColor = '#ff0000';
+                resultDiv.style.textTransform = 'capitalize';
             } else {
                 resultDiv.textContent = 'Unexpected response from the API';
                 resultDiv.style.backgroundColor = '#ffcc00';
@@ -68,6 +66,7 @@ function checkStatus() {
             console.error('Error:', error);
         });
 }
+
 
 function generateSalt(length) {
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
