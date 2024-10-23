@@ -87,13 +87,13 @@ function hashIDSalt(input) {
     return hash;
 }
 
-const salt = generateSalt(13);
-
+    const salt = generateSalt(13);
 function showExtraInfo() {
     const extraInfo = document.getElementById('extra-info');
     const idNumber = document.getElementById('idNumber').value;
     const yearDigits = idNumber.substring(0, 2);
     const fullYear = parseInt(yearDigits, 10) < 50 ? `20${yearDigits}` : `19${yearDigits}`;
+    if (!salt) { const salt = generateSalt(13); }
     const saltedHash = hashIDSalt(idNumber + salt);
 
     fetch(`https://script.google.com/macros/s/AKfycbyDCvsroA47zuU1aLpRIu22ttQgMwchORT7hqkWUZHaR_gREukKeZ-gJblTDTLwLXcfXw/exec?year=${fullYear}&saltyHash=${saltedHash}`)
