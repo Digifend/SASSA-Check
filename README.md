@@ -1,6 +1,6 @@
 # SASSA Application Check
 
-## Please note that this projectmay stop working if patched by SASSA
+## Please note that this project may stop working if patched by SASSA
 https://digifend.github.io/SASSA-Check/
 
 ![Check SASSA Infographic](https://raw.githubusercontent.com/Digifend/SASSA-Check/main/images/CheckSASSAInfographic.png)
