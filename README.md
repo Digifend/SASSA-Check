@@ -10,7 +10,7 @@ https://digifend.github.io/SASSA-Check/
 
 This project uses a POST request to the Public SASSA API endpoint to verify the application status based on the provided ID number and mobile phone number.
 
-## API Endpoint
+## API Endpoint (Need To Update Documentation as this one has been patched by SASSA, current implementation uses a diffent endpoint) 
 
 The API endpoint used is:
 
